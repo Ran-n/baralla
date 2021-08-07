@@ -3,18 +3,23 @@
 # ------------------------------------------------
 #+ Autor:	Ran#
 #+ Creado:	07/08/2021 22:03:25
-#+ Editado:	07/08/2021 22:27:06
+#+ Editado:	07/08/2021 22:42:11
 # ------------------------------------------------
+
+from typing import Optional
+
 class Carta:
     valor: str
     pao: str
     nome: str
+    simbolo: Optional[str]
 
     # constructor
-    def __init__(self, valor, pao, nome) -> None:
+    def __init__(self, valor, pao, nome, simbolo = None) -> None:
         self.valor = valor
         self.pao = pao
         self.nome = nome
+        self.simbolo = simbolo
 
     # getters
     def get_valor(self) -> str:
@@ -25,6 +30,9 @@ class Carta:
 
     def get_nome(self) -> str:
         return self.nome
+
+    def get_simbolo(self) -> str:
+        return self.simbolo
     # getters #
 
     # setters #
@@ -47,6 +55,14 @@ class Carta:
     def set_nome(self, novo_nome) -> bool:
         try:
             self.nome = novo_nome
+        except:
+            return False
+        else:
+            return True
+
+    def set_simbolo(self, novo_simbolo) -> bool:
+        try:
+            self.simbolo = novo_simbolo
         except:
             return False
         else:
