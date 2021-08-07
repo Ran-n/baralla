@@ -3,7 +3,7 @@
 # ------------------------------------------------
 #+ Autor:	Ran#
 #+ Creado:	07/08/2021 22:03:25
-#+ Editado:	07/08/2021 22:13:24
+#+ Editado:	07/08/2021 22:18:27
 # ------------------------------------------------
 class Carta:
     valor: str
@@ -28,7 +28,7 @@ class Carta:
             self.valor = novo_valor
         except:
             return False
-        finally:
+        else:
             return True
 
     def set_pao(self, novo_pao) -> bool:
@@ -36,7 +36,7 @@ class Carta:
             self.pao = novo_pao
         except:
             return False
-        finally:
+        else:
             return True
     # setters #
 # ------------------------------------------------
