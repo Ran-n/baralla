@@ -3,7 +3,7 @@
 # ------------------------------------------------
 #+ Autor:	Ran#
 #+ Creado:	07/08/2021 22:03:25
-#+ Editado:	07/08/2021 23:45:38
+#+ Editado:	08/08/2021 00:13:23
 # ------------------------------------------------
 
 from typing import Optional
@@ -82,9 +82,9 @@ class Carta:
     # 
     def __str__(self) -> str:
         if self.pao == None:
-            return f'{self.simbolo}: {self.nome}({self.valor}) de {self.pao}'
-        else:
             return f'{self.simbolo}: {self.nome}({self.valor})'
+        else:
+            return f'{self.simbolo}: {self.nome}({self.valor}) de {self.pao}'
     #
     def __len__(self) -> int:
         return self.valor
