@@ -3,11 +3,12 @@
 # ------------------------------------------------
 #+ Autor:	Ran#
 #+ Creado:	07/08/2021 22:03:25
-#+ Editado:	07/08/2021 22:58:58
+#+ Editado:	07/08/2021 23:45:38
 # ------------------------------------------------
 
 from typing import Optional
 
+#  
 class Carta:
     valor: str
     pao: str
@@ -22,20 +23,25 @@ class Carta:
         self.simbolo = simbolo
 
     # getters
+    # 
     def get_valor(self) -> str:
         return self.valor
 
+    # 
     def get_pao(self) -> str:
         return self.pao
 
+    # 
     def get_nome(self) -> str:
         return self.nome
 
+    # 
     def get_simbolo(self) -> str:
         return self.simbolo
     # getters #
 
     # setters #
+    # 
     def set_valor(self, novo_valor) -> bool:
         try:
             self.valor = novo_valor
@@ -44,6 +50,7 @@ class Carta:
         else:
             return True
 
+    # 
     def set_pao(self, novo_pao) -> bool:
         try:
             self.pao = novo_pao
@@ -52,6 +59,7 @@ class Carta:
         else:
             return True
 
+    # 
     def set_nome(self, novo_nome) -> bool:
         try:
             self.nome = novo_nome
@@ -60,6 +68,7 @@ class Carta:
         else:
             return True
 
+    # 
     def set_simbolo(self, novo_simbolo) -> bool:
         try:
             self.simbolo = novo_simbolo
@@ -70,7 +79,14 @@ class Carta:
     # setters #
 
     # máxicos
+    # 
     def __str__(self) -> str:
-        return f'{self.simbolo}: {self.nome}({self.valor}) de {self.pao}'
+        if self.pao == None:
+            return f'{self.simbolo}: {self.nome}({self.valor}) de {self.pao}'
+        else:
+            return f'{self.simbolo}: {self.nome}({self.valor})'
+    #
+    def __len__(self) -> int:
+        return self.valor
     # máxicos #
 # ------------------------------------------------
