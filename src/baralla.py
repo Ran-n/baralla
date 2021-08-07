@@ -3,7 +3,7 @@
 # -------------------------------------------------
 #+ Autor:	Ran#
 #+ Creado:	07/08/2021 22:09:00
-#+ Editado:	07/08/2021 23:09:29
+#+ Editado:	07/08/2021 23:12:00
 # -------------------------------------------------
 
 from typing import Optional
@@ -46,13 +46,16 @@ class Baralla:
     # máxicos
     def __len__(self) -> int:
         return len(self.cartas)
-
     # máxicos #
+
+    def resetear_baralla(self):
+        self.cartas = []
+
     def engadir_carta(self, pao, valor, nome, simbolo=None) -> bool:
         self.cartas.append(Carta(pao=pao, valor=valor, nome=nome, simbolo=simbolo))
 
     def set_baralla_castela(self) -> bool:
-        self.set_cartas([])
+        resetar_baralla()
 
         paos = ['Espadas', 'Copas', 'Ouros', 'Bastos']
         valores = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10' ,'11', '12']
