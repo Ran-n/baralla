@@ -3,7 +3,7 @@
 # -------------------------------------------------
 #+ Autor:	Ran#
 #+ Creado:	07/08/2021 22:09:00
-#+ Editado:	07/08/2021 23:12:00
+#+ Editado:	07/08/2021 23:43:31
 # -------------------------------------------------
 
 from typing import Optional
@@ -13,27 +13,47 @@ try:
 except:
     from .carta import Carta
 
+# 
 class Baralla:
+    nome: Optional[str]
     cartas: Optional[list]
 
     # constructor
-    def __init__(self, cartas = []) -> None:
+    def __init__(self, nome= '', cartas = []) -> None:
+        self.nome = nome
         self.cartas = cartas
 
     # getters
+    # 
+    def get_nome(self) -> str:
+        return self.nome
+
+    #
     def get_cartas(self) -> list:
         return self.cartas
 
+    # 
     def get_carta(self, posicion) -> Carta:
         try:
             return self.cartas[posicion]
-        except:
+        except IndexError:
+            # xFCR crear clase excepción
             raise Exception('Posición inexistente na baralla')
         else:
             return True
     # getters #
 
     # setters
+    #
+    def set_nome(self, novo_nome) -> bool:
+        try:
+            self.nome = novo_nome
+        except:
+            return False
+        else:
+            return True
+
+    # 
     def set_cartas(self, novas_cartas) -> bool:
         try:
             self.cartas = novas_cartas
@@ -44,16 +64,52 @@ class Baralla:
     # setters #
 
     # máxicos
+    # 
     def __len__(self) -> int:
         return len(self.cartas)
+
+    #
+    def __str__(self) -> str:
+        saida = f'Baralla {self.nome}\n'
+        for ele in self.cartas:
+            saida += f'{str(ele)\n}'
+        return saida
     # máxicos #
 
-    def resetear_baralla(self):
-        self.cartas = []
+    # 
+    def resetear_baralla(self) -> bool:
+        try:
+            self.cartas.clear()
+        except:
+            return False
+        else:
+            return True
 
-    def engadir_carta(self, pao, valor, nome, simbolo=None) -> bool:
+    # 
+    def engadir(self, pao, valor, nome, simbolo=None) -> bool:
         self.cartas.append(Carta(pao=pao, valor=valor, nome=nome, simbolo=simbolo))
 
+    # 
+    def eliminar_index(self, posicion) -> bool:
+        try:
+            self.cartas.pop(posicion)
+        except IndexError:
+            # xFCR crear clase excepción
+            raise Exception('Posición inexistente na baralla')
+        else:
+            return True
+
+    # 
+    def eliminar_obx(self, carta) -> bool:
+        try:
+            self.cartas.remove(carta)
+        except ValueError:
+            # xFCR crear clase excepción
+            raise Exception('Posición inexistente na baralla')
+        else:
+            return True
+
+    # 
     def set_baralla_castela(self) -> bool:
         resetar_baralla()
 
@@ -63,11 +119,32 @@ class Baralla:
         #simbolos = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '🤺', '🐴', '👑']
         simbolos = ['A', '2', '3', '4', '5', '6', '7', '8', '9', 'S', 'C', 'R']
         #joker = '🃏'
-        joker = '*'
+        simbolo_comodin = '*'
 
         try:
-            self.engadir_carta(pao=None, valor='0', nome='Comodín', simbolo=joker)
-            self.engadir_carta(pao=None, valor='0', nome='Comodín', simbolo=joker)
+            self.engadir_carta(pao=None, valor='0', nome='Comodín', simbolo=simbolo_comodin)
+            self.engadir_carta(pao=None, valor='0', nome='Comodín', simbolo=simbolo_comodin)
+            for pao in paos:
+                for valor, nome, simbolo in zip(valores, nomes, simbolos):
+                    self.engadir_carta(pao=pao, valor=valor, nome=nome, simbolo=simbolo)
+        except:
+            return False
+        else:
+            return True
+
+    #
+    def set_baralla_poker(self) -> bool:
+        resetear_baralla()
+
+        paos = ['Diamantes', 'Tréboles', 'Corazóns', 'Picas']
+        valores = ['1', '2', '3', '4' ,'5', '6', '7', '8', '9', '10', '11', '12', '13']
+        nomes = ['As', 'Dous', 'Tres', 'Catro', 'Cinco', 'Seis', 'Sete', 'Oito', 'Nove', 'Sota', 'Dama', 'Rei']
+        simbolos = ['A', '2', '3', '4' ,'5', '6', '7', '8', '9', '10', 'J', 'Q', 'K']
+        simbolo_comodin = '*'
+
+        try:
+            self.engadir_carta(pao=None, valor='0', nome='Comodín', simbolo=simbolo_comodin)
+            self.engadir_carta(pao=None, valor='0', nome='Comodín', simbolo=simbolo_comodin)
             for pao in paos:
                 for valor, nome, simbolo in zip(valores, nomes, simbolos):
                     self.engadir_carta(pao=pao, valor=valor, nome=nome, simbolo=simbolo)
