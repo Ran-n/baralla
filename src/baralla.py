@@ -3,7 +3,7 @@
 # -------------------------------------------------
 #+ Autor:	Ran#
 #+ Creado:	07/08/2021 22:09:00
-#+ Editado:	07/08/2021 22:51:30
+#+ Editado:	07/08/2021 22:58:26
 # -------------------------------------------------
 
 from typing import Optional
@@ -34,6 +34,12 @@ class Baralla:
         else:
             return True
     # setters #
+
+    # máxicos
+    def __len__(self) -> int:
+        return len(self.cartas)
+
+    # máxicos #
     def engadir_carta(self, pao, valor, nome, simbolo=None) -> bool:
         self.cartas.append(Carta(pao=pao, valor=valor, nome=nome, simbolo=simbolo))
 
