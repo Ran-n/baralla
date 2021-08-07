@@ -3,7 +3,7 @@
 # -------------------------------------------------
 #+ Autor:	Ran#
 #+ Creado:	07/08/2021 22:09:00
-#+ Editado:	08/08/2021 00:02:44
+#+ Editado:	08/08/2021 00:10:46
 # -------------------------------------------------
 
 import random
@@ -73,6 +73,10 @@ class Baralla:
     #
     def __str__(self) -> str:
         saida = 'Baralla {}'.format(self.nome)
+        # se non ten cartas que poña que non as ten
+        if len(self.cartas) == 0:
+            saida += '\nBaleira'
+
         for ele in self.cartas:
             saida += '\n{}'.format(str(ele))
         return saida
@@ -135,7 +139,7 @@ class Baralla:
         return carta
     # 
     def set_baralla_castela(self) -> bool:
-        resetar_baralla()
+        self.resetear_baralla()
 
         paos = ['Espadas', 'Copas', 'Ouros', 'Bastos']
         valores = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10' ,'11', '12']
@@ -146,19 +150,20 @@ class Baralla:
         simbolo_comodin = '*'
 
         try:
-            self.engadir_carta(pao=None, valor='0', nome='Comodín', simbolo=simbolo_comodin)
-            self.engadir_carta(pao=None, valor='0', nome='Comodín', simbolo=simbolo_comodin)
+            self.engadir(pao=None, valor='0', nome='Comodín', simbolo=simbolo_comodin)
+            self.engadir(pao=None, valor='0', nome='Comodín', simbolo=simbolo_comodin)
             for pao in paos:
                 for valor, nome, simbolo in zip(valores, nomes, simbolos):
-                    self.engadir_carta(pao=pao, valor=valor, nome=nome, simbolo=simbolo)
+                    self.engadir(pao=pao, valor=valor, nome=nome, simbolo=simbolo)
         except:
+            raise
             return False
         else:
             return True
 
     #
     def set_baralla_poker(self) -> bool:
-        resetear_baralla()
+        self.resetear_baralla()
 
         paos = ['Diamantes', 'Tréboles', 'Corazóns', 'Picas']
         valores = ['1', '2', '3', '4' ,'5', '6', '7', '8', '9', '10', '11', '12', '13']
@@ -167,11 +172,11 @@ class Baralla:
         simbolo_comodin = '*'
 
         try:
-            self.engadir_carta(pao=None, valor='0', nome='Comodín', simbolo=simbolo_comodin)
-            self.engadir_carta(pao=None, valor='0', nome='Comodín', simbolo=simbolo_comodin)
+            self.engadir(pao=None, valor='0', nome='Comodín', simbolo=simbolo_comodin)
+            self.engadir(pao=None, valor='0', nome='Comodín', simbolo=simbolo_comodin)
             for pao in paos:
                 for valor, nome, simbolo in zip(valores, nomes, simbolos):
-                    self.engadir_carta(pao=pao, valor=valor, nome=nome, simbolo=simbolo)
+                    self.engadir(pao=pao, valor=valor, nome=nome, simbolo=simbolo)
         except:
             return False
         else:
