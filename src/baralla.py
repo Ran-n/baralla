@@ -3,7 +3,7 @@
 # -------------------------------------------------
 #+ Autor:	Ran#
 #+ Creado:	07/08/2021 22:09:00
-#+ Editado:	07/08/2021 23:59:34
+#+ Editado:	08/08/2021 00:02:44
 # -------------------------------------------------
 
 import random
@@ -72,9 +72,9 @@ class Baralla:
 
     #
     def __str__(self) -> str:
-        saida = f'Baralla {self.nome}\n'
+        saida = 'Baralla {}'.format(self.nome)
         for ele in self.cartas:
-            saida += f'{str(ele)\n}'
+            saida += '\n{}'.format(str(ele))
         return saida
     # máxicos #
 
@@ -115,7 +115,7 @@ class Baralla:
     def eliminar_comodins(self) -> bool:
         try:
             for idx, ele in enumerate(self.cartas):
-                if ele.get_valor = '0':
+                if ele.get_valor == '0':
                     self.eliminar_index(idx)
         except:
             return False
