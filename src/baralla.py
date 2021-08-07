@@ -3,7 +3,7 @@
 # -------------------------------------------------
 #+ Autor:	Ran#
 #+ Creado:	07/08/2021 22:09:00
-#+ Editado:	08/08/2021 00:10:46
+#+ Editado:	08/08/2021 00:26:42
 # -------------------------------------------------
 
 import random
@@ -41,6 +41,8 @@ class Baralla:
         except IndexError:
             # xFCR crear clase excepción
             raise Exception('Posición inexistente na baralla')
+        except:
+            return False
         else:
             return True
     # getters #
@@ -102,25 +104,33 @@ class Baralla:
         except IndexError:
             # xFCR crear clase excepción
             raise Exception('Posición inexistente na baralla')
+        except:
+            return False
         else:
             return True
 
     # 
     def eliminar_obx(self, carta) -> bool:
         try:
-            self.cartas.remove(carta)
+            if not self.cartas.remove(carta):
+                return False
         except ValueError:
             # xFCR crear clase excepción
             raise Exception('Posición inexistente na baralla')
+        except:
+            return False
         else:
             return True
 
     # elimina as cartas valoradas en 0
     def eliminar_comodins(self) -> bool:
         try:
+            indices = []
             for idx, ele in enumerate(self.cartas):
-                if ele.get_valor == '0':
-                    self.eliminar_index(idx)
+                if ele.get_valor() == '0':
+                    indices.append(idx)
+            for indice in indices:
+                self.eliminar_index(indice)
         except:
             return False
         else:
