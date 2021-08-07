@@ -3,7 +3,7 @@
 # -------------------------------------------------
 #+ Autor:	Ran#
 #+ Creado:	07/08/2021 22:09:00
-#+ Editado:	08/08/2021 00:26:42
+#+ Editado:	08/08/2021 00:32:05
 # -------------------------------------------------
 
 import random
@@ -123,6 +123,7 @@ class Baralla:
             return True
 
     # elimina as cartas valoradas en 0
+    # xFCR: mellorar
     def eliminar_comodins(self) -> bool:
         try:
             indices = []
