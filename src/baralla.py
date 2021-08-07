@@ -3,7 +3,7 @@
 # -------------------------------------------------
 #+ Autor:	Ran#
 #+ Creado:	07/08/2021 22:09:00
-#+ Editado:	07/08/2021 22:58:26
+#+ Editado:	07/08/2021 23:09:29
 # -------------------------------------------------
 
 from typing import Optional
@@ -23,6 +23,14 @@ class Baralla:
     # getters
     def get_cartas(self) -> list:
         return self.cartas
+
+    def get_carta(self, posicion) -> Carta:
+        try:
+            return self.cartas[posicion]
+        except:
+            raise Exception('Posición inexistente na baralla')
+        else:
+            return True
     # getters #
 
     # setters
@@ -44,11 +52,15 @@ class Baralla:
         self.cartas.append(Carta(pao=pao, valor=valor, nome=nome, simbolo=simbolo))
 
     def set_baralla_castela(self) -> bool:
+        self.set_cartas([])
+
         paos = ['Espadas', 'Copas', 'Ouros', 'Bastos']
         valores = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10' ,'11', '12']
         nomes = ['As', 'Dous', 'Tres', 'Catro', 'Cinco', 'Seis', 'Sete', 'Oito', 'Nove', 'Sota', 'Cabalo', 'Rey']
-        simbolos = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '🤺', '🐴', '👑']
-        joker = '🃏'
+        #simbolos = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '🤺', '🐴', '👑']
+        simbolos = ['A', '2', '3', '4', '5', '6', '7', '8', '9', 'S', 'C', 'R']
+        #joker = '🃏'
+        joker = '*'
 
         try:
             self.engadir_carta(pao=None, valor='0', nome='Comodín', simbolo=joker)
