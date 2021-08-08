@@ -3,7 +3,7 @@
 # ------------------------------------------------
 #+ Autor:	Ran#
 #+ Creado:	07/08/2021 22:03:25
-#+ Editado:	08/08/2021 00:13:23
+#+ Editado:	08/08/2021 12:21:31
 # ------------------------------------------------
 
 from typing import Optional
@@ -79,14 +79,51 @@ class Carta:
     # setters #
 
     # máxicos
-    # 
+    # operación str() e print()
     def __str__(self) -> str:
         if self.pao == None:
             return f'{self.simbolo}: {self.nome}({self.valor})'
         else:
             return f'{self.simbolo}: {self.nome}({self.valor}) de {self.pao}'
-    #
+
+    # Operación len()
     def __len__(self) -> int:
         return self.valor
+
+    # Operador ==
+    def __eq__(self, outra) -> bool:
+        if self.valor == outra.valor:
+            return True
+        return False
+        
+    # Operación !=
+    def __ne__(self, outra) -> bool:
+        if self.valor == outra.valor:
+            return True
+        return False
+
+    # Operación <
+    def __lt__(self, outra) -> bool:
+        if self.valor < outra.valor:
+            return True
+        return False
+
+    # Operación >
+    def __gt__(self, outra) -> bool:
+        if self.valor > outra.valor:
+            return True
+        return False
+
+    # Operación <=
+    def __le__(self, outra) -> bool:
+        if self.valor <= outra.valor:
+            return True
+        return False
+    
+    # Operación >=
+    def __ge__(self, outra) -> bool:
+        if self.valor >= outra.valor:
+            return True
+        return False
     # máxicos #
 # ------------------------------------------------
