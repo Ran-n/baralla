@@ -3,7 +3,7 @@
 # ------------------------------------------------
 #+ Autor:	Ran#
 #+ Creado:	07/08/2021 22:03:25
-#+ Editado:	08/08/2021 14:20:47
+#+ Editado:	08/08/2021 17:17:49
 # ------------------------------------------------
 
 from typing import Optional
@@ -29,6 +29,9 @@ class Carta:
         self.__simbolo = simbolo
 
     # getters
+    # 
+    def get_atribs(self) -> str:
+        return 'valor, pao, nome, simbolo'
     # 
     def get_valor(self) -> str:
         return self.__valor
@@ -110,38 +113,42 @@ class Carta:
 
     # Operador ==
     def __eq__(self, outra) -> bool:
-        if self.__valor == outra.valor:
+        if self.__valor == outra.get_valor():
             return True
         return False
         
     # Operación !=
     def __ne__(self, outra) -> bool:
-        if self.__valor == outra.valor:
+        if self.__valor == outra.get_valor():
             return True
         return False
 
     # Operación <
     def __lt__(self, outra) -> bool:
-        if self.__valor < outra.valor:
+        if self.__valor < outra.get_valor():
             return True
         return False
 
     # Operación >
     def __gt__(self, outra) -> bool:
-        if self.__valor > outra.valor:
+        if self.__valor > outra.get_valor():
             return True
         return False
 
     # Operación <=
     def __le__(self, outra) -> bool:
-        if self.__valor <= outra.valor:
+        if self.__valor <= outra.get_valor():
             return True
         return False
     
     # Operación >=
     def __ge__(self, outra) -> bool:
-        if self.__valor >= outra.valor:
+        if self.__valor >= outra.get_valor():
             return True
         return False
+
+    # Operación hash() 
+    def __hash__(self) -> int:
+        return hash((self.get_simbolo(), self.get_nome(), self.get_valor(), self.get_pao()))
     # máxicos #
 # ------------------------------------------------
