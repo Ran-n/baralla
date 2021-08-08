@@ -3,17 +3,14 @@
 # -------------------------------------------------
 #+ Autor:	Ran#
 #+ Creado:	07/08/2021 22:09:00
-#+ Editado:	08/08/2021 14:25:35
+#+ Editado:	09/08/2021 00:03:09
 # -------------------------------------------------
 
 import random
 import secrets
 from typing import Optional
 
-try:
-    from carta import Carta
-except:
-    from .carta import Carta
+from carta import Carta
 
 # 
 class Baralla:
@@ -22,14 +19,15 @@ class Baralla:
     __cartas: Optional[list]
 
     # constructor
-    def __init__(self, nome='', preset=None, cartas=[]) -> None:
+    def __init__(self, nome='', preset=None, cartas=None) -> None:
         self.__nome = nome
         self.__preset = preset
         self.__cartas = cartas
 
         # se meteu preset tentamolo
-        if self.__preset:
-            self.set_preset(self.__preset)
+        if self.__preset: self.set_preset(self.__preset)
+
+        if not cartas: self.__cartas = []
 
     # getters
     # 
@@ -92,11 +90,11 @@ class Baralla:
             return False
 
         try:
-            self.engadir(pao=None, valor='0', nome='Comodín', simbolo=simbolo_comodin)
-            self.engadir(pao=None, valor='0', nome='Comodín', simbolo=simbolo_comodin)
+            self.engadir(Carta(pao=None, valor='0', nome='Comodín', simbolo=simbolo_comodin))
+            self.engadir(Carta(pao=None, valor='0', nome='Comodín', simbolo=simbolo_comodin))
             for pao in paos:
                 for valor, nome, simbolo in zip(valores, nomes, simbolos):
-                    self.engadir(pao=pao, valor=valor, nome=nome, simbolo=simbolo)
+                    self.engadir(Carta(pao=pao, valor=valor, nome=nome, simbolo=simbolo))
         except:
             raise
             return False
@@ -104,8 +102,9 @@ class Baralla:
             return True
 
     # 
-    def set_cartas(self, novas_cartas) -> bool:
+    def set_cartas(self, novas_cartas, eliminar=False) -> bool:
         try:
+            if eliminar: self.resetear_baralla()
             self.__cartas = novas_cartas
         except:
             return False
@@ -129,6 +128,10 @@ class Baralla:
                 saida += '\n#{}\n{}\n'.format(idx+1, str(ele))
             saida = saida[:-1]
         return saida
+
+    # 
+    def __hash__(self) -> int:
+        return hash((self.get_nome(), self.get_preset(), self.get_cartas()))
     # máxicos #
 
     # 
@@ -141,8 +144,14 @@ class Baralla:
             return True
 
     # 
-    def engadir(self, pao, valor, nome, simbolo=None) -> bool:
-        self.__cartas.append(Carta(pao=pao, valor=valor, nome=nome, simbolo=simbolo))
+    def engadir(self, carta) -> bool:
+        try:
+            self.__cartas.append(carta)
+        except:
+            raise
+            return False
+        else:
+            return True
 
     # 
     def eliminar_index(self, posicion) -> bool:
@@ -186,7 +195,12 @@ class Baralla:
 
     #
     def barallar(self) -> bool:
-        random.shuffle(self.__cartas)        
+        try:
+            random.shuffle(self.__cartas)        
+        except:
+            return False
+        else:
+            return True
 
     # sacaa de forma aleatoria
     def sacar_carta_aleatoria(self) -> Carta:
