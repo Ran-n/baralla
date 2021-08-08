@@ -3,7 +3,7 @@
 # -------------------------------------------------
 #+ Autor:	Ran#
 #+ Creado:	07/08/2021 22:09:00
-#+ Editado:	08/08/2021 14:13:12
+#+ Editado:	08/08/2021 14:25:35
 # -------------------------------------------------
 
 import random
@@ -22,7 +22,7 @@ class Baralla:
     __cartas: Optional[list]
 
     # constructor
-    def __init__(self, nome='', preset=False, cartas=[]) -> None:
+    def __init__(self, nome='', preset=None, cartas=[]) -> None:
         self.__nome = nome
         self.__preset = preset
         self.__cartas = cartas
@@ -71,7 +71,8 @@ class Baralla:
     def set_preset(self, tipo) -> bool:
         self.resetear_baralla()
 
-        if tipo.lower() == 'poker':
+        if tipo.lower() == 'castela':
+            self.__preset = 'castela'
             paos = ['Espadas', 'Copas', 'Ouros', 'Bastos']
             valores = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10' ,'11', '12']
             nomes = ['As', 'Dous', 'Tres', 'Catro', 'Cinco', 'Seis', 'Sete', 'Oito', 'Nove', 'Sota', 'Cabalo', 'Rey']
@@ -80,7 +81,8 @@ class Baralla:
             #joker = '🃏'
             simbolo_comodin = '*'
 
-        elif tipo.lower() == 'castela':
+        elif tipo.lower() == 'poker':
+            self.__preset = 'poker'
             paos = ['Diamantes', 'Tréboles', 'Corazóns', 'Picas']
             valores = ['1', '2', '3', '4' ,'5', '6', '7', '8', '9', '10', '11', '12', '13']
             nomes = ['As', 'Dous', 'Tres', 'Catro', 'Cinco', 'Seis', 'Sete', 'Oito', 'Nove', 'Sota', 'Dama', 'Rei']
@@ -132,7 +134,7 @@ class Baralla:
     # 
     def resetear_baralla(self) -> bool:
         try:
-            self.cartas.clear()
+            self.__cartas.clear()
         except:
             return False
         else:
