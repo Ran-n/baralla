@@ -3,7 +3,7 @@
 # -------------------------------------------------
 #+ Autor:	Ran#
 #+ Creado:	07/08/2021 22:09:00
-#+ Editado:	08/08/2021 12:02:15
+#+ Editado:	08/08/2021 12:10:22
 # -------------------------------------------------
 
 import random
@@ -18,17 +18,27 @@ except:
 # 
 class Baralla:
     nome: Optional[str]
+    preset: Optional[str]
     cartas: Optional[list]
 
     # constructor
-    def __init__(self, nome= '', cartas = []) -> None:
+    def __init__(self, nome='', preset=False, cartas=[]) -> None:
         self.nome = nome
+        self.preset = preset
         self.cartas = cartas
+
+        # se meteu preset tentamolo
+        if self.preset:
+            self.set_preset(self.preset)
 
     # getters
     # 
     def get_nome(self) -> str:
         return self.nome
+
+    # 
+    def get_preset(self) -> str:
+        return self.preset
 
     #
     def get_cartas(self) -> list:
@@ -53,6 +63,40 @@ class Baralla:
         try:
             self.nome = novo_nome
         except:
+            return False
+        else:
+            return True
+
+    # crea barallas predefinidas como a de poker ou a castelá
+    def set_preset(self, tipo) -> bool:
+        self.resetear_baralla()
+
+        if tipo.lower() == 'poker':
+            paos = ['Espadas', 'Copas', 'Ouros', 'Bastos']
+            valores = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10' ,'11', '12']
+            nomes = ['As', 'Dous', 'Tres', 'Catro', 'Cinco', 'Seis', 'Sete', 'Oito', 'Nove', 'Sota', 'Cabalo', 'Rey']
+            #simbolos = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '🤺', '🐴', '👑']
+            simbolos = ['A', '2', '3', '4', '5', '6', '7', '8', '9', 'S', 'C', 'R']
+            #joker = '🃏'
+            simbolo_comodin = '*'
+
+        elif tipo.lower() == 'castela':
+            paos = ['Diamantes', 'Tréboles', 'Corazóns', 'Picas']
+            valores = ['1', '2', '3', '4' ,'5', '6', '7', '8', '9', '10', '11', '12', '13']
+            nomes = ['As', 'Dous', 'Tres', 'Catro', 'Cinco', 'Seis', 'Sete', 'Oito', 'Nove', 'Sota', 'Dama', 'Rei']
+            simbolos = ['A', '2', '3', '4' ,'5', '6', '7', '8', '9', '10', 'J', 'Q', 'K']
+            simbolo_comodin = '*'
+        else:
+            return False
+
+        try:
+            self.engadir(pao=None, valor='0', nome='Comodín', simbolo=simbolo_comodin)
+            self.engadir(pao=None, valor='0', nome='Comodín', simbolo=simbolo_comodin)
+            for pao in paos:
+                for valor, nome, simbolo in zip(valores, nomes, simbolos):
+                    self.engadir(pao=pao, valor=valor, nome=nome, simbolo=simbolo)
+        except:
+            raise
             return False
         else:
             return True
@@ -141,45 +185,12 @@ class Baralla:
     def barallar(self) -> bool:
         random.shuffle(self.cartas)        
 
-    # 
-    def sacar_carta(self) -> Carta:
+    # sacaa de forma aleatoria
+    def sacar_carta_aleatoria(self) -> Carta:
         # collemos unha carta aleatoria
         carta = secrets.choice(self.cartas)
         # eliminamola da baralla
         self.eliminar_obx(carta)
         return carta
 
-    # crea barallas predefinidas como a de poker ou a castelá
-    def preset(self, tipo) -> bool:
-        self.resetear_baralla()
-
-        if tipo.lower() == 'poker':
-            paos = ['Espadas', 'Copas', 'Ouros', 'Bastos']
-            valores = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10' ,'11', '12']
-            nomes = ['As', 'Dous', 'Tres', 'Catro', 'Cinco', 'Seis', 'Sete', 'Oito', 'Nove', 'Sota', 'Cabalo', 'Rey']
-            #simbolos = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '🤺', '🐴', '👑']
-            simbolos = ['A', '2', '3', '4', '5', '6', '7', '8', '9', 'S', 'C', 'R']
-            #joker = '🃏'
-            simbolo_comodin = '*'
-
-        elif tipo.lower() == 'castela':
-            paos = ['Diamantes', 'Tréboles', 'Corazóns', 'Picas']
-            valores = ['1', '2', '3', '4' ,'5', '6', '7', '8', '9', '10', '11', '12', '13']
-            nomes = ['As', 'Dous', 'Tres', 'Catro', 'Cinco', 'Seis', 'Sete', 'Oito', 'Nove', 'Sota', 'Dama', 'Rei']
-            simbolos = ['A', '2', '3', '4' ,'5', '6', '7', '8', '9', '10', 'J', 'Q', 'K']
-            simbolo_comodin = '*'
-        else:
-            return False
-
-        try:
-            self.engadir(pao=None, valor='0', nome='Comodín', simbolo=simbolo_comodin)
-            self.engadir(pao=None, valor='0', nome='Comodín', simbolo=simbolo_comodin)
-            for pao in paos:
-                for valor, nome, simbolo in zip(valores, nomes, simbolos):
-                    self.engadir(pao=pao, valor=valor, nome=nome, simbolo=simbolo)
-        except:
-            raise
-            return False
-        else:
-            return True
 # -------------------------------------------------
