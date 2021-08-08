@@ -3,7 +3,7 @@
 # -------------------------------------------------
 #+ Autor:	Ran#
 #+ Creado:	07/08/2021 22:09:00
-#+ Editado:	08/08/2021 12:10:22
+#+ Editado:	08/08/2021 14:01:19
 # -------------------------------------------------
 
 import random
@@ -118,13 +118,13 @@ class Baralla:
 
     #
     def __str__(self) -> str:
-        saida = 'Baralla {}'.format(self.nome)
+        saida = 'Baralla {}\n-------------------'.format(self.nome)
         # se non ten cartas que poña que non as ten
         if len(self.cartas) == 0:
             saida += '\nBaleira'
 
-        for ele in self.cartas:
-            saida += '\n{}'.format(str(ele))
+        for idx, ele in enumerate(self.cartas):
+            saida += '\n#{}\n{}\n'.format(idx+1, str(ele))
         return saida
     # máxicos #
 
