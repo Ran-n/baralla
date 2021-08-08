@@ -3,7 +3,7 @@
 # ------------------------------------------------
 #+ Autor:	Ran#
 #+ Creado:	07/08/2021 22:03:25
-#+ Editado:	08/08/2021 17:17:49
+#+ Editado:	09/08/2021 01:11:31
 # ------------------------------------------------
 
 from typing import Optional
@@ -109,7 +109,7 @@ class Carta:
 
     # Operación len()
     def __len__(self) -> int:
-        return self.__valor
+        return int(self.__valor)
 
     # Operador ==
     def __eq__(self, outra) -> bool:
