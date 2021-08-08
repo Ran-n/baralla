@@ -3,7 +3,7 @@
 # -------------------------------------------------
 #+ Autor:	Ran#
 #+ Creado:	07/08/2021 22:09:00
-#+ Editado:	08/08/2021 14:01:19
+#+ Editado:	08/08/2021 14:13:12
 # -------------------------------------------------
 
 import random
@@ -17,37 +17,37 @@ except:
 
 # 
 class Baralla:
-    nome: Optional[str]
-    preset: Optional[str]
-    cartas: Optional[list]
+    __nome: Optional[str]
+    __preset: Optional[str]
+    __cartas: Optional[list]
 
     # constructor
     def __init__(self, nome='', preset=False, cartas=[]) -> None:
-        self.nome = nome
-        self.preset = preset
-        self.cartas = cartas
+        self.__nome = nome
+        self.__preset = preset
+        self.__cartas = cartas
 
         # se meteu preset tentamolo
-        if self.preset:
-            self.set_preset(self.preset)
+        if self.__preset:
+            self.set_preset(self.__preset)
 
     # getters
     # 
     def get_nome(self) -> str:
-        return self.nome
+        return self.__nome
 
     # 
     def get_preset(self) -> str:
-        return self.preset
+        return self.__preset
 
     #
     def get_cartas(self) -> list:
-        return self.cartas
+        return self.__cartas
 
     # 
     def get_carta(self, posicion) -> Carta:
         try:
-            return self.cartas[posicion]
+            return self.get_cartas()[posicion]
         except IndexError:
             # xFCR crear clase excepción
             raise Exception('Posición inexistente na baralla')
@@ -61,7 +61,7 @@ class Baralla:
     #
     def set_nome(self, novo_nome) -> bool:
         try:
-            self.nome = novo_nome
+            self.__nome = novo_nome
         except:
             return False
         else:
@@ -104,7 +104,7 @@ class Baralla:
     # 
     def set_cartas(self, novas_cartas) -> bool:
         try:
-            self.cartas = novas_cartas
+            self.__cartas = novas_cartas
         except:
             return False
         else:
@@ -114,17 +114,18 @@ class Baralla:
     # máxicos
     # 
     def __len__(self) -> int:
-        return len(self.cartas)
+        return len(self.get_cartas())
 
     #
     def __str__(self) -> str:
-        saida = 'Baralla {}\n-------------------'.format(self.nome)
+        saida = 'Baralla {}\n-------------------'.format(self.get_nome())
         # se non ten cartas que poña que non as ten
-        if len(self.cartas) == 0:
+        if len(self.get_cartas()) == 0:
             saida += '\nBaleira'
-
-        for idx, ele in enumerate(self.cartas):
-            saida += '\n#{}\n{}\n'.format(idx+1, str(ele))
+        else:
+            for idx, ele in enumerate(self.get_cartas()):
+                saida += '\n#{}\n{}\n'.format(idx+1, str(ele))
+            saida = saida[:-1]
         return saida
     # máxicos #
 
@@ -139,12 +140,12 @@ class Baralla:
 
     # 
     def engadir(self, pao, valor, nome, simbolo=None) -> bool:
-        self.cartas.append(Carta(pao=pao, valor=valor, nome=nome, simbolo=simbolo))
+        self.__cartas.append(Carta(pao=pao, valor=valor, nome=nome, simbolo=simbolo))
 
     # 
     def eliminar_index(self, posicion) -> bool:
         try:
-            self.cartas.pop(posicion)
+            self.__cartas.pop(posicion)
         except IndexError:
             # xFCR crear clase excepción
             raise Exception('Posición inexistente na baralla')
@@ -156,7 +157,7 @@ class Baralla:
     # 
     def eliminar_obx(self, carta) -> bool:
         try:
-            if not self.cartas.remove(carta):
+            if not self.__cartas.remove(carta):
                 return False
         except ValueError:
             # xFCR crear clase excepción
@@ -171,7 +172,7 @@ class Baralla:
     def eliminar_comodins(self) -> bool:
         try:
             indices = []
-            for idx, ele in enumerate(self.cartas):
+            for idx, ele in enumerate(self.__cartas):
                 if ele.get_valor() == '0':
                     indices.append(idx)
             for indice in indices:
@@ -183,12 +184,12 @@ class Baralla:
 
     #
     def barallar(self) -> bool:
-        random.shuffle(self.cartas)        
+        random.shuffle(self.__cartas)        
 
     # sacaa de forma aleatoria
     def sacar_carta_aleatoria(self) -> Carta:
         # collemos unha carta aleatoria
-        carta = secrets.choice(self.cartas)
+        carta = secrets.choice(self.get_cartas())
         # eliminamola da baralla
         self.eliminar_obx(carta)
         return carta
