@@ -3,7 +3,7 @@
 # -------------------------------------------------
 #+ Autor:	Ran#
 #+ Creado:	07/08/2021 22:09:00
-#+ Editado:	08/08/2021 00:32:05
+#+ Editado:	08/08/2021 12:02:15
 # -------------------------------------------------
 
 import random
@@ -148,17 +148,28 @@ class Baralla:
         # eliminamola da baralla
         self.eliminar_obx(carta)
         return carta
-    # 
-    def set_baralla_castela(self) -> bool:
+
+    # crea barallas predefinidas como a de poker ou a castelá
+    def preset(self, tipo) -> bool:
         self.resetear_baralla()
 
-        paos = ['Espadas', 'Copas', 'Ouros', 'Bastos']
-        valores = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10' ,'11', '12']
-        nomes = ['As', 'Dous', 'Tres', 'Catro', 'Cinco', 'Seis', 'Sete', 'Oito', 'Nove', 'Sota', 'Cabalo', 'Rey']
-        #simbolos = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '🤺', '🐴', '👑']
-        simbolos = ['A', '2', '3', '4', '5', '6', '7', '8', '9', 'S', 'C', 'R']
-        #joker = '🃏'
-        simbolo_comodin = '*'
+        if tipo.lower() == 'poker':
+            paos = ['Espadas', 'Copas', 'Ouros', 'Bastos']
+            valores = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10' ,'11', '12']
+            nomes = ['As', 'Dous', 'Tres', 'Catro', 'Cinco', 'Seis', 'Sete', 'Oito', 'Nove', 'Sota', 'Cabalo', 'Rey']
+            #simbolos = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '🤺', '🐴', '👑']
+            simbolos = ['A', '2', '3', '4', '5', '6', '7', '8', '9', 'S', 'C', 'R']
+            #joker = '🃏'
+            simbolo_comodin = '*'
+
+        elif tipo.lower() == 'castela':
+            paos = ['Diamantes', 'Tréboles', 'Corazóns', 'Picas']
+            valores = ['1', '2', '3', '4' ,'5', '6', '7', '8', '9', '10', '11', '12', '13']
+            nomes = ['As', 'Dous', 'Tres', 'Catro', 'Cinco', 'Seis', 'Sete', 'Oito', 'Nove', 'Sota', 'Dama', 'Rei']
+            simbolos = ['A', '2', '3', '4' ,'5', '6', '7', '8', '9', '10', 'J', 'Q', 'K']
+            simbolo_comodin = '*'
+        else:
+            return False
 
         try:
             self.engadir(pao=None, valor='0', nome='Comodín', simbolo=simbolo_comodin)
@@ -171,26 +182,4 @@ class Baralla:
             return False
         else:
             return True
-
-    #
-    def set_baralla_poker(self) -> bool:
-        self.resetear_baralla()
-
-        paos = ['Diamantes', 'Tréboles', 'Corazóns', 'Picas']
-        valores = ['1', '2', '3', '4' ,'5', '6', '7', '8', '9', '10', '11', '12', '13']
-        nomes = ['As', 'Dous', 'Tres', 'Catro', 'Cinco', 'Seis', 'Sete', 'Oito', 'Nove', 'Sota', 'Dama', 'Rei']
-        simbolos = ['A', '2', '3', '4' ,'5', '6', '7', '8', '9', '10', 'J', 'Q', 'K']
-        simbolo_comodin = '*'
-
-        try:
-            self.engadir(pao=None, valor='0', nome='Comodín', simbolo=simbolo_comodin)
-            self.engadir(pao=None, valor='0', nome='Comodín', simbolo=simbolo_comodin)
-            for pao in paos:
-                for valor, nome, simbolo in zip(valores, nomes, simbolos):
-                    self.engadir(pao=pao, valor=valor, nome=nome, simbolo=simbolo)
-        except:
-            return False
-        else:
-            return True
-        
 # -------------------------------------------------
