@@ -3,7 +3,7 @@
 # ------------------------------------------------
 #+ Autor:	Ran#
 #+ Creado:	07/08/2021 22:03:25
-#+ Editado:	08/08/2021 12:21:31
+#+ Editado:	08/08/2021 13:09:44
 # ------------------------------------------------
 
 from typing import Optional
@@ -17,34 +17,34 @@ class Carta:
 
     # constructor
     def __init__(self, valor, pao, nome, simbolo = None) -> None:
-        self.valor = valor
-        self.pao = pao
-        self.nome = nome
-        self.simbolo = simbolo
+        self.__valor = valor
+        self.__pao = pao
+        self.__nome = nome
+        self.__simbolo = simbolo
 
     # getters
     # 
     def get_valor(self) -> str:
-        return self.valor
+        return self.__valor
 
     # 
     def get_pao(self) -> str:
-        return self.pao
+        return self.__pao
 
     # 
     def get_nome(self) -> str:
-        return self.nome
+        return self.__nome
 
     # 
     def get_simbolo(self) -> str:
-        return self.simbolo
+        return self.__simbolo
     # getters #
 
     # setters #
     # 
     def set_valor(self, novo_valor) -> bool:
         try:
-            self.valor = novo_valor
+            self.__valor = novo_valor
         except:
             return False
         else:
@@ -53,7 +53,7 @@ class Carta:
     # 
     def set_pao(self, novo_pao) -> bool:
         try:
-            self.pao = novo_pao
+            self.__pao = novo_pao
         except:
             return False
         else:
@@ -62,7 +62,7 @@ class Carta:
     # 
     def set_nome(self, novo_nome) -> bool:
         try:
-            self.nome = novo_nome
+            self.__nome = novo_nome
         except:
             return False
         else:
@@ -71,7 +71,7 @@ class Carta:
     # 
     def set_simbolo(self, novo_simbolo) -> bool:
         try:
-            self.simbolo = novo_simbolo
+            self.__simbolo = novo_simbolo
         except:
             return False
         else:
@@ -81,48 +81,48 @@ class Carta:
     # máxicos
     # operación str() e print()
     def __str__(self) -> str:
-        if self.pao == None:
+        if self.__pao == None:
             return f'{self.simbolo}: {self.nome}({self.valor})'
         else:
             return f'{self.simbolo}: {self.nome}({self.valor}) de {self.pao}'
 
     # Operación len()
     def __len__(self) -> int:
-        return self.valor
+        return self.__valor
 
     # Operador ==
     def __eq__(self, outra) -> bool:
-        if self.valor == outra.valor:
+        if self.__valor == outra.valor:
             return True
         return False
         
     # Operación !=
     def __ne__(self, outra) -> bool:
-        if self.valor == outra.valor:
+        if self.__valor == outra.valor:
             return True
         return False
 
     # Operación <
     def __lt__(self, outra) -> bool:
-        if self.valor < outra.valor:
+        if self.__valor < outra.valor:
             return True
         return False
 
     # Operación >
     def __gt__(self, outra) -> bool:
-        if self.valor > outra.valor:
+        if self.__valor > outra.valor:
             return True
         return False
 
     # Operación <=
     def __le__(self, outra) -> bool:
-        if self.valor <= outra.valor:
+        if self.__valor <= outra.valor:
             return True
         return False
     
     # Operación >=
     def __ge__(self, outra) -> bool:
-        if self.valor >= outra.valor:
+        if self.__valor >= outra.valor:
             return True
         return False
     # máxicos #
