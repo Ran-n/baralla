@@ -3,17 +3,17 @@
 # ------------------------------------------------
 #+ Autor:	Ran#
 #+ Creado:	07/08/2021 22:03:25
-#+ Editado:	08/08/2021 13:09:44
+#+ Editado:	08/08/2021 13:57:22
 # ------------------------------------------------
 
 from typing import Optional
 
 #  
 class Carta:
-    valor: str
-    pao: str
-    nome: str
-    simbolo: Optional[str]
+    __valor: str
+    __pao: str
+    __nome: str
+    __simbolo: Optional[str]
 
     # constructor
     def __init__(self, valor, pao, nome, simbolo = None) -> None:
@@ -81,10 +81,22 @@ class Carta:
     # máxicos
     # operación str() e print()
     def __str__(self) -> str:
-        if self.__pao == None:
-            return f'{self.simbolo}: {self.nome}({self.valor})'
-        else:
-            return f'{self.simbolo}: {self.nome}({self.valor}) de {self.pao}'
+        saida = ''
+        if self.__simbolo:
+            saida += 'Símbolo: {}'.format(self.__simbolo)
+
+        if self.__nome:
+            saida += '\nNome:\t {}'.format(self.__nome)
+
+        if self.__valor:
+            saida += '\nValor:\t {}'.format(self.__valor)
+
+        if self.__pao:
+            saida += '\nPao:\t {}'.format(self.__pao)
+
+        #return f'{self.simbolo}: {self.nome}({self.valor}) de {self.pao}'
+        if saida.startswith('\n'): return saida.replace('\n', '', 1)
+        return saida
 
     # Operación len()
     def __len__(self) -> int:
