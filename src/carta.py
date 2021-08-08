@@ -3,7 +3,7 @@
 # ------------------------------------------------
 #+ Autor:	Ran#
 #+ Creado:	07/08/2021 22:03:25
-#+ Editado:	08/08/2021 14:15:22
+#+ Editado:	08/08/2021 14:20:47
 # ------------------------------------------------
 
 from typing import Optional
@@ -18,8 +18,14 @@ class Carta:
     # constructor
     def __init__(self, valor, pao, nome, simbolo = None) -> None:
         self.__valor = valor
-        self.__pao = pao.capitalize()
-        self.__nome = nome.capitalize()
+        if pao:
+            self.__pao = pao.capitalize()
+        else:
+            self.__pao = pao
+        if nome:
+            self.__nome = nome.capitalize()
+        else:
+            self.__nome = nome
         self.__simbolo = simbolo
 
     # getters
