@@ -3,7 +3,7 @@
 # ------------------------------------------------------
 #+ Autor:	Ran#
 #+ Creado:	09/08/2021 00:55:30
-#+ Editado:	09/08/2021 18:20:23
+#+ Editado:	09/08/2021 19:43:11
 # ------------------------------------------------------
 
 import unittest
@@ -69,6 +69,11 @@ class TestBaralla(unittest.TestCase):
     # setters #
 
     # máxicos
+    def test_len(self):
+        b = Baralla()
+        b.set_preset('poker')
+        self.assertEqual(len(b), 50)
+
     # máxicos #
 
 if __name__ == '__main__':
