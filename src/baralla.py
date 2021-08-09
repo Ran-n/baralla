@@ -3,7 +3,7 @@
 # -------------------------------------------------
 #+ Autor:	Ran#
 #+ Creado:	07/08/2021 22:09:00
-#+ Editado:	09/08/2021 14:34:49
+#+ Editado:	09/08/2021 16:00:02
 # -------------------------------------------------
 
 import random
@@ -51,9 +51,7 @@ class Baralla:
             # xFCR crear clase excepción
             raise Exception('Posición inexistente na baralla')
         except:
-            return False
-        else:
-            return True
+            raise
     # getters #
 
     # setters
