@@ -3,7 +3,7 @@
 # -------------------------------------------------
 #+ Autor:	Ran#
 #+ Creado:	07/08/2021 22:09:00
-#+ Editado:	09/08/2021 00:03:09
+#+ Editado:	09/08/2021 14:34:49
 # -------------------------------------------------
 
 import random
@@ -24,10 +24,11 @@ class Baralla:
         self.__preset = preset
         self.__cartas = cartas
 
+        # isto ten que ir antes porque se mete o preset na declaración da erro
+        if not cartas: self.__cartas = []
         # se meteu preset tentamolo
         if self.__preset: self.set_preset(self.__preset)
 
-        if not cartas: self.__cartas = []
 
     # getters
     # 
