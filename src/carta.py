@@ -3,7 +3,7 @@
 # ------------------------------------------------
 #+ Autor:	Ran#
 #+ Creado:	07/08/2021 22:03:25
-#+ Editado:	09/08/2021 11:56:35
+#+ Editado:	09/08/2021 13:46:45
 # ------------------------------------------------
 
 from typing import Optional
@@ -116,7 +116,7 @@ class Carta:
         
     # Operación !=
     def __ne__(self, outra) -> bool:
-        if self.__valor == outra.get_valor():
+        if self.__valor != outra.get_valor():
             return True
         return False
 
