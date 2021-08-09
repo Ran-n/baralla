@@ -3,7 +3,7 @@
 # ------------------------------------------------------
 #+ Autor:	Ran#
 #+ Creado:	09/08/2021 00:54:34
-#+ Editado:	09/08/2021 14:13:03
+#+ Editado:	09/08/2021 18:17:55
 # ------------------------------------------------------
 
 import unittest
@@ -205,7 +205,8 @@ class TestCarta(unittest.TestCase):
 
     # máxicos #
 
-# para que corran os tests
-unittest.main()
+if __name__ == '__main__':
+    # para que corran os tests
+    unittest.main()
 
 # ------------------------------------------------------
