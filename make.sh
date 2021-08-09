@@ -9,6 +9,8 @@ pytest --cov=src
 #coverage report
 coverage html
 cp .coverage tests/.coverage
-mv -n htmlcov/ tests/
+mkdir -p tests/htmlcov
+mv htmlcov/* tests/htmlcov/.
+rm -rf htmlcov
 
 # -----------------------------------
