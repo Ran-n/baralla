@@ -3,7 +3,7 @@
 # -------------------------------------------------
 #+ Autor:	Ran#
 #+ Creado:	07/08/2021 22:09:00
-#+ Editado:	09/08/2021 16:00:02
+#+ Editado:	09/08/2021 23:18:08
 # -------------------------------------------------
 
 import random
@@ -11,6 +11,8 @@ import secrets
 from typing import Optional
 
 from carta import Carta
+
+from excepcions import PosicionInexistente, CartaInexistente, BarallaBaleira
 
 # 
 class Baralla:
@@ -28,7 +30,6 @@ class Baralla:
         if not cartas: self.__cartas = []
         # se meteu preset tentamolo
         if self.__preset: self.set_preset(self.__preset)
-
 
     # getters
     # 
@@ -48,8 +49,7 @@ class Baralla:
         try:
             return self.get_cartas()[posicion]
         except IndexError:
-            # xFCR crear clase excepción
-            raise Exception('Posición inexistente na baralla')
+            raise PosicionInexistente(f'Posición #{posicion}')
         except:
             raise
     # getters #
@@ -130,25 +130,29 @@ class Baralla:
 
     # 
     def __hash__(self) -> int:
-        return hash((self.get_nome(), self.get_preset(), self.get_cartas()))
+        hashes_cartas = []
+        for carta in self.get_cartas():
+            hashes_cartas.append(hash(carta))
+
+        return hash((self.get_nome(), self.get_preset(), sum(hashes_cartas)))
     # máxicos #
 
     # 
     def resetear_baralla(self) -> bool:
         try:
             self.__cartas.clear()
-        except:
+        except Exception as e:
+            print(e)
             return False
         else:
             return True
 
     # 
-    def engadir(self, carta) -> bool:
+    def engadir(self, carta: Carta) -> bool:
         try:
             self.__cartas.append(carta)
         except:
             raise
-            return False
         else:
             return True
 
@@ -157,9 +161,9 @@ class Baralla:
         try:
             self.__cartas.pop(posicion)
         except IndexError:
-            # xFCR crear clase excepción
-            raise Exception('Posición inexistente na baralla')
-        except:
+            raise PosicionInexistente(f'Posición #{posicion}')
+        except Exception as e:
+            print(e)
             return False
         else:
             return True
@@ -167,13 +171,11 @@ class Baralla:
     # 
     def eliminar_obx(self, carta) -> bool:
         try:
-            if not self.__cartas.remove(carta):
-                return False
+            self.__cartas.remove(carta)
         except ValueError:
-            # xFCR crear clase excepción
-            raise Exception('Posición inexistente na baralla')
+            raise CartaInexistente('Carta → {}'.format(carta.replace('\n',', ')))
         except:
-            return False
+            raise
         else:
             return True
 
@@ -187,7 +189,8 @@ class Baralla:
                     indices.append(idx)
             for indice in indices:
                 self.eliminar_index(indice)
-        except:
+        except Exception as e:
+            print(e)
             return False
         else:
             return True
@@ -196,17 +199,24 @@ class Baralla:
     def barallar(self) -> bool:
         try:
             random.shuffle(self.__cartas)        
-        except:
+        except Exception as e:
+            print(e)
             return False
         else:
             return True
 
     # sacaa de forma aleatoria
     def sacar_carta_aleatoria(self) -> Carta:
-        # collemos unha carta aleatoria
-        carta = secrets.choice(self.get_cartas())
-        # eliminamola da baralla
-        self.eliminar_obx(carta)
-        return carta
+        try:
+            # collemos unha carta aleatoria
+            carta = secrets.choice(self.get_cartas())
+            # eliminamola da baralla
+            self.eliminar_obx(carta)
+        except IndexError:
+            raise BarallaBaleira()
+        except:
+            raise
+        else:
+            return carta
 
 # -------------------------------------------------

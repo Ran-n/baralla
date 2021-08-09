@@ -3,7 +3,7 @@
 # ------------------------------------------------------
 #+ Autor:	Ran#
 #+ Creado:	09/08/2021 00:55:30
-#+ Editado:	09/08/2021 19:43:11
+#+ Editado:	09/08/2021 23:41:05
 # ------------------------------------------------------
 
 import unittest
@@ -12,6 +12,8 @@ import sys
 sys.path.append('src')
 from carta import Carta
 from baralla import Baralla
+
+from excepcions import PosicionInexistente, CartaInexistente, BarallaBaleira
 
 class TestBaralla(unittest.TestCase):
 
@@ -65,7 +67,6 @@ class TestBaralla(unittest.TestCase):
         c2 = Carta('2', '', '')
         b.set_cartas([c1, c2])
         self.assertEqual(b.get_cartas(), [c1, c2])
-
     # setters #
 
     # máxicos
@@ -74,7 +75,51 @@ class TestBaralla(unittest.TestCase):
         b.set_preset('poker')
         self.assertEqual(len(b), 50)
 
+    def test_str_baleira(self):
+        b = Baralla()
+        self.assertEqual(str(b), 'Baralla {}\n-------------------\nBaleira'.format(b.get_nome()))
+
+    def test_str_chea(self):
+        b = Baralla()
+        c = Carta('1', 'a', 'b')
+        b.engadir(c)
+        self.assertEqual(str(b), 'Baralla {}\n-------------------\n#{}\n{}'.format(b.get_nome(), 1, str(c)))
+    
+    def test_hash_baleira(self):
+        hashes_cartas = []
+        b = Baralla()
+        for carta in b.get_cartas():
+            hashes_cartas.append(hash(carta))
+        self.assertEqual(hash(b), hash((b.get_nome(), b.get_preset(), sum(hashes_cartas))))
+
+    def test_hash_chea(self):
+        hashes_cartas = []
+        b = Baralla()
+        b.set_preset('castela')
+        for carta in b.get_cartas():
+            hashes_cartas.append(hash(carta))
+        self.assertEqual(hash(b), hash((b.get_nome(), b.get_preset(), sum(hashes_cartas))))
+
     # máxicos #
+
+    def test_barallar(self):
+        b1 = Baralla(preset='poker')
+        b2 = Baralla(preset='poker')
+
+        b1.barallar()
+        self.assertNotEqual(b1, b2)
+
+
+    def test_sacar_carta_aleatoria_ok(self):
+        b = Baralla()
+        c = Carta('1', 'a', 'b')
+        b.engadir(c)
+        self.assertEqual(b.sacar_carta_aleatoria(), c)
+        self.assertEqual(len(b), 0)
+
+    def test_sacar_carta_aleatoria_erro(self):
+        b = Baralla()
+        self.assertRaises(BarallaBaleira, b.sacar_carta_aleatoria)
 
 if __name__ == '__main__':
     # para que corran os tests
