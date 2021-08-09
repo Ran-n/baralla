@@ -3,7 +3,7 @@
 # ------------------------------------------------
 #+ Autor:	Ran#
 #+ Creado:	07/08/2021 22:03:25
-#+ Editado:	09/08/2021 01:11:31
+#+ Editado:	09/08/2021 11:56:35
 # ------------------------------------------------
 
 from typing import Optional
@@ -29,9 +29,6 @@ class Carta:
         self.__simbolo = simbolo
 
     # getters
-    # 
-    def get_atribs(self) -> str:
-        return 'valor, pao, nome, simbolo'
     # 
     def get_valor(self) -> str:
         return self.__valor
