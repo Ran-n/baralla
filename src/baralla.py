@@ -3,7 +3,7 @@
 # -------------------------------------------------
 #+ Autor:	Ran#
 #+ Creado:	07/08/2021 22:09:00
-#+ Editado:	10/08/2021 20:20:29
+#+ Editado:	10/08/2021 20:25:37
 # -------------------------------------------------
 
 import random
@@ -261,6 +261,8 @@ class Baralla:
             # eliminamola da baralla
             self.eliminar_obx(carta)
         except IndexError:
+            raise BarallaBaleira()
+        except PosicionInexistente:
             raise BarallaBaleira()
         except:
             raise
