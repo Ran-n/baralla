@@ -3,7 +3,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=emulateIE7" />
-    <title>Coverage for src/baralla.py: 77%</title>
+    <title>Coverage for src/baralla.py: 78%</title>
     <link rel="icon" sizes="32x32" href="favicon_32.png">
     <link rel="stylesheet" href="style.css" type="text/css">
     <script type="text/javascript" src="jquery.min.js"></script>
@@ -18,12 +18,12 @@
 <div id="header">
     <div class="content">
         <h1>Coverage for <b>src/baralla.py</b> :
-            <span class="pc_cov">77%</span>
+            <span class="pc_cov">78%</span>
         </h1>
         <img id="keyboard_icon" src="keybd_closed.png" alt="Show keyboard shortcuts" />
         <h2 class="stats">
-            177 statements &nbsp;
-            <button type="button" class="run shortkey_r button_toggle_run" title="Toggle lines run">137 run</button>
+            181 statements &nbsp;
+            <button type="button" class="run shortkey_r button_toggle_run" title="Toggle lines run">141 run</button>
             <button type="button" class="mis show_mis shortkey_m button_toggle_mis" title="Toggle lines missing">40 missing</button>
             <button type="button" class="exc show_exc shortkey_x button_toggle_exc" title="Toggle lines excluded">0 excluded</button>
         </h2>
@@ -57,7 +57,7 @@
     <p id="t3" class="pln"><span class="n"><a href="#t3">3</a></span><span class="t"><span class="com"># -------------------------------------------------</span>&nbsp;</span><span class="r"></span></p>
     <p id="t4" class="pln"><span class="n"><a href="#t4">4</a></span><span class="t"><span class="com">#+ Autor:       Ran#</span>&nbsp;</span><span class="r"></span></p>
     <p id="t5" class="pln"><span class="n"><a href="#t5">5</a></span><span class="t"><span class="com">#+ Creado:      07/08/2021 22:09:00</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t6" class="pln"><span class="n"><a href="#t6">6</a></span><span class="t"><span class="com">#+ Editado:     10/08/2021 20:04:07</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t6" class="pln"><span class="n"><a href="#t6">6</a></span><span class="t"><span class="com">#+ Editado:     10/08/2021 20:25:37</span>&nbsp;</span><span class="r"></span></p>
     <p id="t7" class="pln"><span class="n"><a href="#t7">7</a></span><span class="t"><span class="com"># -------------------------------------------------</span>&nbsp;</span><span class="r"></span></p>
     <p id="t8" class="pln"><span class="n"><a href="#t8">8</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p id="t9" class="run"><span class="n"><a href="#t9">9</a></span><span class="t"><span class="key">import</span> <span class="nam">random</span>&nbsp;</span><span class="r"></span></p>
@@ -304,26 +304,31 @@
     <p id="t250" class="run"><span class="n"><a href="#t250">250</a></span><span class="t">            <span class="key">return</span> <span class="key">True</span>&nbsp;</span><span class="r"></span></p>
     <p id="t251" class="pln"><span class="n"><a href="#t251">251</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p id="t252" class="pln"><span class="n"><a href="#t252">252</a></span><span class="t">    <span class="com"># sacaa de forma aleatoria</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t253" class="run"><span class="n"><a href="#t253">253</a></span><span class="t">    <span class="key">def</span> <span class="nam">sacar_carta_aleatoria</span><span class="op">(</span><span class="nam">self</span><span class="op">)</span> <span class="op">-></span> <span class="nam">Carta</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t253" class="run"><span class="n"><a href="#t253">253</a></span><span class="t">    <span class="key">def</span> <span class="nam">sacar_carta</span><span class="op">(</span><span class="nam">self</span><span class="op">,</span> <span class="nam">aleatoria</span><span class="op">:</span> <span class="nam">bool</span><span class="op">)</span> <span class="op">-></span> <span class="nam">Carta</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
     <p id="t254" class="run"><span class="n"><a href="#t254">254</a></span><span class="t">        <span class="key">try</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t255" class="pln"><span class="n"><a href="#t255">255</a></span><span class="t">            <span class="com"># collemos unha carta aleatoria</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t256" class="run"><span class="n"><a href="#t256">256</a></span><span class="t">            <span class="nam">carta</span> <span class="op">=</span> <span class="nam">secrets</span><span class="op">.</span><span class="nam">choice</span><span class="op">(</span><span class="nam">self</span><span class="op">.</span><span class="nam">get_cartas</span><span class="op">(</span><span class="op">)</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t257" class="pln"><span class="n"><a href="#t257">257</a></span><span class="t">            <span class="com"># eliminamola da baralla</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t258" class="run"><span class="n"><a href="#t258">258</a></span><span class="t">            <span class="nam">self</span><span class="op">.</span><span class="nam">eliminar_obx</span><span class="op">(</span><span class="nam">carta</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t259" class="run"><span class="n"><a href="#t259">259</a></span><span class="t">        <span class="key">except</span> <span class="nam">IndexError</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t260" class="run"><span class="n"><a href="#t260">260</a></span><span class="t">            <span class="key">raise</span> <span class="nam">BarallaBaleira</span><span class="op">(</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t261" class="mis show_mis"><span class="n"><a href="#t261">261</a></span><span class="t">        <span class="key">except</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t262" class="mis show_mis"><span class="n"><a href="#t262">262</a></span><span class="t">            <span class="key">raise</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t263" class="pln"><span class="n"><a href="#t263">263</a></span><span class="t">        <span class="key">else</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t264" class="run"><span class="n"><a href="#t264">264</a></span><span class="t">            <span class="key">return</span> <span class="nam">carta</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t265" class="pln"><span class="n"><a href="#t265">265</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
-    <p id="t266" class="pln"><span class="n"><a href="#t266">266</a></span><span class="t"><span class="com"># -------------------------------------------------</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t255" class="run"><span class="n"><a href="#t255">255</a></span><span class="t">            <span class="key">if</span> <span class="nam">aleatoria</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t256" class="pln"><span class="n"><a href="#t256">256</a></span><span class="t">                <span class="com"># collemos unha carta aleatoria</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t257" class="run"><span class="n"><a href="#t257">257</a></span><span class="t">                <span class="nam">carta</span> <span class="op">=</span> <span class="nam">secrets</span><span class="op">.</span><span class="nam">choice</span><span class="op">(</span><span class="nam">self</span><span class="op">.</span><span class="nam">get_cartas</span><span class="op">(</span><span class="op">)</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t258" class="pln"><span class="n"><a href="#t258">258</a></span><span class="t">            <span class="key">else</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t259" class="pln"><span class="n"><a href="#t259">259</a></span><span class="t">                <span class="com"># collemos a primeira carta da lista</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t260" class="run"><span class="n"><a href="#t260">260</a></span><span class="t">                <span class="nam">carta</span> <span class="op">=</span> <span class="nam">self</span><span class="op">.</span><span class="nam">get_carta</span><span class="op">(</span><span class="num">0</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t261" class="pln"><span class="n"><a href="#t261">261</a></span><span class="t">            <span class="com"># eliminamola da baralla</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t262" class="run"><span class="n"><a href="#t262">262</a></span><span class="t">            <span class="nam">self</span><span class="op">.</span><span class="nam">eliminar_obx</span><span class="op">(</span><span class="nam">carta</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t263" class="run"><span class="n"><a href="#t263">263</a></span><span class="t">        <span class="key">except</span> <span class="nam">IndexError</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t264" class="run"><span class="n"><a href="#t264">264</a></span><span class="t">            <span class="key">raise</span> <span class="nam">BarallaBaleira</span><span class="op">(</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t265" class="run"><span class="n"><a href="#t265">265</a></span><span class="t">        <span class="key">except</span> <span class="nam">PosicionInexistente</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t266" class="run"><span class="n"><a href="#t266">266</a></span><span class="t">            <span class="key">raise</span> <span class="nam">BarallaBaleira</span><span class="op">(</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t267" class="mis show_mis"><span class="n"><a href="#t267">267</a></span><span class="t">        <span class="key">except</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t268" class="mis show_mis"><span class="n"><a href="#t268">268</a></span><span class="t">            <span class="key">raise</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t269" class="pln"><span class="n"><a href="#t269">269</a></span><span class="t">        <span class="key">else</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t270" class="run"><span class="n"><a href="#t270">270</a></span><span class="t">            <span class="key">return</span> <span class="nam">carta</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t271" class="pln"><span class="n"><a href="#t271">271</a></span><span class="t"><span class="com"># -------------------------------------------------</span>&nbsp;</span><span class="r"></span></p>
 </div>
 <div id="footer">
     <div class="content">
         <p>
             <a class="nav" href="index.html">&#xab; index</a> &nbsp; &nbsp; <a class="nav" href="https://coverage.readthedocs.io">coverage.py v5.5</a>,
-            created at 2021-08-10 20:12 +0200
+            created at 2021-08-10 20:25 +0200
         </p>
     </div>
 </div>
