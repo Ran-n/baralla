@@ -3,7 +3,7 @@
 # ------------------------------------------------------
 #+ Autor:	Ran#
 #+ Creado:	09/08/2021 00:55:30
-#+ Editado:	09/08/2021 23:41:05
+#+ Editado:	10/08/2021 20:12:01
 # ------------------------------------------------------
 
 import unittest
@@ -99,8 +99,72 @@ class TestBaralla(unittest.TestCase):
         for carta in b.get_cartas():
             hashes_cartas.append(hash(carta))
         self.assertEqual(hash(b), hash((b.get_nome(), b.get_preset(), sum(hashes_cartas))))
-
     # máxicos #
+
+    def test_eliminar_index(self):
+        b = Baralla()
+        c1 = Carta('1', 'a', 'b')
+        c2 = Carta('2', 'a', 'b')
+        b.engadir(c1)
+        b.engadir(c2)
+        b.eliminar_index(0)
+        self.assertEqual(1, len(b))
+        self.assertEqual(c2, b.get_carta(0))
+
+    def test_eliminar_valor(self):
+        b = Baralla()
+        c1 = Carta('1', nome='c1', pao='b')
+        c2 = Carta('2', nome='c2', pao='b')
+        c3 = Carta('2', nome='c3', pao='b')
+        c4 = Carta('3', nome='c4', pao='b')
+        c5 = Carta('2', nome='c5', pao='b')
+        c6 = Carta('4', nome='c6', pao='b')
+        b.set_cartas([c1, c2, c3, c4, c5, c6], True)
+        b.eliminar_valor('2')
+        self.assertEqual(len(b), 3)
+        self.assertEqual(b.get_cartas(), [c1,c4,c6])
+        self.assertEqual(b.get_carta(0), c1)
+
+    def test_eliminar_pao(self):
+        b = Baralla()
+        c1 = Carta('1', nome='c1', pao='b')
+        c2 = Carta('2', nome='c2', pao='a')
+        c3 = Carta('2', nome='c3', pao='a')
+        c4 = Carta('3', nome='c4', pao='b')
+        c5 = Carta('2', nome='c5', pao='a')
+        c6 = Carta('4', nome='c6', pao='b')
+        b.set_cartas([c1, c2, c3, c4, c5, c6], True)
+        b.eliminar_pao('a'.capitalize())
+        self.assertEqual(len(b), 3)
+        self.assertEqual(b.get_cartas(), [c1,c4,c6])
+        self.assertEqual(b.get_carta(0), c1)
+
+    def test_eliminar_nome(self):
+        b = Baralla()
+        c1 = Carta('1', nome='c1', pao='b')
+        c2 = Carta('2', nome='c', pao='a')
+        c3 = Carta('2', nome='c', pao='a')
+        c4 = Carta('3', nome='c4', pao='b')
+        c5 = Carta('2', nome='c', pao='a')
+        c6 = Carta('4', nome='c6', pao='b')
+        b.set_cartas([c1, c2, c3, c4, c5, c6], True)
+        b.eliminar_nome('c'.capitalize())
+        self.assertEqual(len(b), 3)
+        self.assertEqual(b.get_cartas(), [c1,c4,c6])
+        self.assertEqual(b.get_carta(0), c1)
+
+    def test_eliminar_simbolo(self):
+        b = Baralla()
+        c1 = Carta('1', nome='c1', pao='b', simbolo='*')
+        c2 = Carta('2', nome='c', pao='a', simbolo='+')
+        c3 = Carta('2', nome='c', pao='a', simbolo='+')
+        c4 = Carta('3', nome='c4', pao='b', simbolo='*')
+        c5 = Carta('2', nome='c', pao='a', simbolo='+')
+        c6 = Carta('4', nome='c6', pao='b', simbolo='*')
+        b.set_cartas([c1, c2, c3, c4, c5, c6], True)
+        b.eliminar_simbolo('+')
+        self.assertEqual(len(b), 3)
+        self.assertEqual(b.get_cartas(), [c1,c4,c6])
 
     def test_barallar(self):
         b1 = Baralla(preset='poker')
@@ -108,7 +172,6 @@ class TestBaralla(unittest.TestCase):
 
         b1.barallar()
         self.assertNotEqual(b1, b2)
-
 
     def test_sacar_carta_aleatoria_ok(self):
         b = Baralla()
