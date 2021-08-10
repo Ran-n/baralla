@@ -3,12 +3,12 @@
 # -------------------------------------------------
 #+ Autor:	Ran#
 #+ Creado:	07/08/2021 22:09:00
-#+ Editado:	09/08/2021 23:18:08
+#+ Editado:	10/08/2021 20:04:07
 # -------------------------------------------------
 
 import random
 import secrets
-from typing import Optional
+from typing import Optional, List
 
 from carta import Carta
 
@@ -18,7 +18,7 @@ from excepcions import PosicionInexistente, CartaInexistente, BarallaBaleira
 class Baralla:
     __nome: Optional[str]
     __preset: Optional[str]
-    __cartas: Optional[list]
+    __cartas: Optional[List[str]]
 
     # constructor
     def __init__(self, nome='', preset=None, cartas=None) -> None:
@@ -179,15 +179,59 @@ class Baralla:
         else:
             return True
 
-    # elimina as cartas valoradas en 0
-    # xFCR: mellorar
-    def eliminar_comodins(self) -> bool:
-        try:
-            indices = []
-            for idx, ele in enumerate(self.__cartas):
-                if ele.get_valor() == '0':
+    # 
+    def __eliminar_aux(self, atrib, valor_atrib) -> list:
+        indices = []
+        for idx, ele in enumerate(self.__cartas):
+            if atrib == 'valor':
+                if ele.get_valor() == valor_atrib:
                     indices.append(idx)
-            for indice in indices:
+            elif atrib == 'pao':
+                if ele.get_pao() == valor_atrib:
+                    indices.append(idx)
+            elif atrib == 'nome':
+                if ele.get_nome() == valor_atrib:
+                    indices.append(idx)
+            elif atrib == 'simbolo':
+                if ele.get_simbolo() == valor_atrib:
+                    indices.append(idx)
+        return indices
+
+    #
+    def eliminar_valor(self, valor: str) -> bool:
+        try:
+            for indice in self.__eliminar_aux('valor', valor)[::-1]:
+                self.eliminar_index(indice)
+        except Exception as e:
+            print(e)
+            return False
+        else:
+            return True
+
+    # 
+    def eliminar_pao(self, pao: str) -> bool:
+        try:
+            for indice in self.__eliminar_aux('pao', pao)[::-1]:
+                self.eliminar_index(indice)
+        except Exception as e:
+            print(e)
+            return False
+        else:
+            return True
+    #
+    def eliminar_nome(self, nome: str) -> bool:
+        try:
+            for indice in self.__eliminar_aux('nome', nome)[::-1]:
+                self.eliminar_index(indice)
+        except Exception as e:
+            print(e)
+            return False
+        else:
+            return True
+    #
+    def eliminar_simbolo(self, simbolo: str) -> bool:
+        try:
+            for indice in self.__eliminar_aux('simbolo', simbolo)[::-1]:
                 self.eliminar_index(indice)
         except Exception as e:
             print(e)
