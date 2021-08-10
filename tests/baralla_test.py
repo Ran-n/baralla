@@ -3,7 +3,7 @@
 # ------------------------------------------------------
 #+ Autor:	Ran#
 #+ Creado:	09/08/2021 00:55:30
-#+ Editado:	10/08/2021 20:12:01
+#+ Editado:	10/08/2021 20:24:57
 # ------------------------------------------------------
 
 import unittest
@@ -175,14 +175,29 @@ class TestBaralla(unittest.TestCase):
 
     def test_sacar_carta_aleatoria_ok(self):
         b = Baralla()
+        c1 = Carta('1', 'a', 'b')
+        c2 = Carta('2', 'a', 'b')
+        b.engadir(c1)
+        b.engadir(c2)
+        self.assertEqual(b.sacar_carta(True), c1)
+        self.assertEqual(len(b), 1)
+        self.assertEqual(b.sacar_carta(True), c2)
+        self.assertEqual(len(b), 0)
+
+    def test_sacar_carta_aleatoria_ok(self):
+        b = Baralla()
         c = Carta('1', 'a', 'b')
         b.engadir(c)
-        self.assertEqual(b.sacar_carta_aleatoria(), c)
+        self.assertEqual(b.sacar_carta(True), c)
         self.assertEqual(len(b), 0)
+
+    def test_sacar_carta_erro(self):
+        b = Baralla()
+        self.assertRaises(BarallaBaleira, b.sacar_carta, False)
 
     def test_sacar_carta_aleatoria_erro(self):
         b = Baralla()
-        self.assertRaises(BarallaBaleira, b.sacar_carta_aleatoria)
+        self.assertRaises(BarallaBaleira, b.sacar_carta, True)
 
 if __name__ == '__main__':
     # para que corran os tests
