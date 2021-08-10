@@ -3,7 +3,7 @@
 # -------------------------------------------------
 #+ Autor:	Ran#
 #+ Creado:	07/08/2021 22:09:00
-#+ Editado:	10/08/2021 20:04:07
+#+ Editado:	10/08/2021 20:20:29
 # -------------------------------------------------
 
 import random
@@ -250,10 +250,14 @@ class Baralla:
             return True
 
     # sacaa de forma aleatoria
-    def sacar_carta_aleatoria(self) -> Carta:
+    def sacar_carta(self, aleatoria: bool) -> Carta:
         try:
-            # collemos unha carta aleatoria
-            carta = secrets.choice(self.get_cartas())
+            if aleatoria:
+                # collemos unha carta aleatoria
+                carta = secrets.choice(self.get_cartas())
+            else:
+                # collemos a primeira carta da lista
+                carta = self.get_carta(0)
             # eliminamola da baralla
             self.eliminar_obx(carta)
         except IndexError:
@@ -262,5 +266,4 @@ class Baralla:
             raise
         else:
             return carta
-
 # -------------------------------------------------
