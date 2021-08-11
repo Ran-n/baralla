@@ -3,7 +3,7 @@
 # ------------------------------------------------
 #+ Autor:	Ran#
 #+ Creado:	07/08/2021 22:03:25
-#+ Editado:	09/08/2021 13:46:45
+#+ Editado:	11/08/2021 13:53:30
 # ------------------------------------------------
 
 from typing import Optional
@@ -110,37 +110,37 @@ class Carta:
 
     # Operador ==
     def __eq__(self, outra) -> bool:
-        if self.__valor == outra.get_valor():
+        if int(self.__valor) == int(outra.get_valor()):
             return True
         return False
         
     # Operación !=
     def __ne__(self, outra) -> bool:
-        if self.__valor != outra.get_valor():
+        if int(self.__valor) != int(outra.get_valor()):
             return True
         return False
 
     # Operación <
     def __lt__(self, outra) -> bool:
-        if self.__valor < outra.get_valor():
+        if int(self.__valor) < int(outra.get_valor()):
             return True
         return False
 
     # Operación >
     def __gt__(self, outra) -> bool:
-        if self.__valor > outra.get_valor():
+        if int(self.__valor) > int(outra.get_valor()):
             return True
         return False
 
     # Operación <=
     def __le__(self, outra) -> bool:
-        if self.__valor <= outra.get_valor():
+        if int(self.__valor) <= int(outra.get_valor()):
             return True
         return False
     
     # Operación >=
     def __ge__(self, outra) -> bool:
-        if self.__valor >= outra.get_valor():
+        if int(self.__valor) >= int(outra.get_valor()):
             return True
         return False
 
