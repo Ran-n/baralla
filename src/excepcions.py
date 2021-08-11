@@ -3,7 +3,7 @@
 # -------------------------------------------------
 #+ Autor:	Ran#
 #+ Creado:	09/08/2021 22:42:58
-#+ Editado:	09/08/2021 23:10:48
+#+ Editado:	10/08/2021 21:19:27
 # -------------------------------------------------
 
 class PosicionInexistente(Exception):
@@ -27,5 +27,8 @@ class CartaInexistente(Exception):
     pass
 
 class BarallaBaleira(Exception):
+    pass
+
+class NonHerda(Exception):
     pass
 # -------------------------------------------------
