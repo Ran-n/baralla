@@ -3,7 +3,7 @@
 # ----------------------------------------------------
 #+ Autor:	Ran#
 #+ Creado:	10/08/2021 20:58:40
-#+ Editado:	11/08/2021 14:43:03
+#+ Editado:	11/08/2021 14:48:21
 # ----------------------------------------------------
 
 # ESTRATEXIA CONCRETA patrón estratexia #
@@ -20,15 +20,13 @@ class CartaAltaEstratexia(XogarEstratexia):
     def __imprimir_puntaxe(self, puntos, acerto, fin=False):
         if fin:
             cprint('\n* Felicidades, conseguiches *', 'white', attrs=['bold'])
-            if puntos == 1:
-                cprint(f'Puntaxe: {puntos} pto\nAcerto: {acerto}%', 'white', attrs=['bold'])
-            else:
-                cprint(f'Puntaxe: {puntos} ptos\nAcerto: {acerto}%', 'white', attrs=['bold'])
         else:
-            if puntos == 1:
-                cprint(f'* Puntaxe: {puntos} pto *\n* Acerto: {acerto}% *', 'white', attrs=['bold'])
-            else:
-                cprint(f'* Puntaxe: {puntos} ptos *\n* Acerto: {acerto}% *', 'white', attrs=['bold'])
+            cprint('* ----- Marcador ----- *', 'white', attrs=['bold'])
+
+        if puntos == 1:
+            cprint(f'Puntaxe:\t{puntos} pto\nAcerto: \t{acerto}% *', 'white', attrs=['bold'])
+        else:
+            cprint(f'Puntaxe:\t{puntos} ptos\nAcerto: \t{acerto}% *', 'white', attrs=['bold'])
 
 
     def xogo(self, baralla = None, puntos = 0, num_xogo = 1) -> None:
