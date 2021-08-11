@@ -3,7 +3,7 @@
 # --------------------------------------------
 #+ Autor:	Ran#
 #+ Creado:	10/08/2021 21:11:45
-#+ Editado:	10/08/2021 21:25:37
+#+ Editado:	11/08/2021 13:07:52
 # --------------------------------------------
 
 # CONTEXTO patrón estratexia #
@@ -18,8 +18,7 @@ class Xogar:
         else:
             raise NonHerda(XogarEstratexia.__name__)
 
-    def crear_baralla(self):
-        print('funca')
-        return self.estratexia.crear_baralla()
+    def xogo(self):
+        return self.estratexia.xogo()
 
 # --------------------------------------------

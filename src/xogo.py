@@ -3,7 +3,7 @@
 # ------------------------------------------------
 #+ Autor:	Ran#
 #+ Creado:	10/08/2021 20:52:22
-#+ Editado:	10/08/2021 21:15:04
+#+ Editado:	11/08/2021 13:06:43
 # ------------------------------------------------
 
 # INTERFAZ patrón estratexia #
@@ -12,7 +12,7 @@ from abc import ABC, abstractmethod
 
 class XogarEstratexia(ABC):
     @abstractmethod
-    def crear_baralla(self):
+    def xogo(self):
         pass
 
 # ------------------------------------------------
