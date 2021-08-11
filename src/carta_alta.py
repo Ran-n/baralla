@@ -3,7 +3,7 @@
 # ----------------------------------------------------
 #+ Autor:	Ran#
 #+ Creado:	10/08/2021 20:58:40
-#+ Editado:	11/08/2021 13:44:46
+#+ Editado:	11/08/2021 13:50:52
 # ----------------------------------------------------
 
 # ESTRATEXIA CONCRETA patrón estratexia #
@@ -12,8 +12,7 @@ from src.xogo import XogarEstratexia
 from src.baralla import Baralla
 
 class CartaAltaEstratexia(XogarEstratexia):
-    def xogo(self, baralla = None, num_xogo = 1) -> None:
-        puntos = 0
+    def xogo(self, baralla = None, puntos = 0, num_xogo = 1) -> None:
         # crear unha baralla
         if not baralla:
             b = Baralla(preset='castela')
@@ -48,10 +47,10 @@ class CartaAltaEstratexia(XogarEstratexia):
                     if sair in ['s', 'n', '']:
                         break
                 if sair == 'n':
+                    print()
+                    print(f'* Felicidades, conseguiches unha puntaxes de {puntos}! *')
                     break
                 else:
-                    self.xogo(b, num_xogo+1)
+                    self.xogo(b, puntos, num_xogo+1)
                     break
-        print()
-        print(f'* Felicidades, conseguiches unha puntaxes de {puntos}! *')
 # ----------------------------------------------------
