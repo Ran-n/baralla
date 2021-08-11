@@ -3,16 +3,16 @@
 # -------------------------------------------------
 #+ Autor:	Ran#
 #+ Creado:	07/08/2021 22:09:00
-#+ Editado:	10/08/2021 20:25:37
+#+ Editado:	11/08/2021 12:14:45
 # -------------------------------------------------
 
 import random
 import secrets
 from typing import Optional, List
 
-from carta import Carta
+from src.carta import Carta
 
-from excepcions import PosicionInexistente, CartaInexistente, BarallaBaleira
+from src.excepcions import PosicionInexistente, CartaInexistente, BarallaBaleira
 
 # 
 class Baralla:
