@@ -3,7 +3,7 @@
 # ----------------------------------------------------
 #+ Autor:	Ran#
 #+ Creado:	10/08/2021 20:58:40
-#+ Editado:	12/08/2021 00:43:38
+#+ Editado:	12/08/2021 00:48:53
 # ----------------------------------------------------
 
 # ESTRATEXIA CONCRETA patrón estratexia #
@@ -14,10 +14,10 @@ from src.xogo import XogarEstratexia
 from src.baralla import Baralla
 
 class CartaAltaEstratexia(XogarEstratexia):
-    def __sacar_acerto(self, puntos, num_xogo):
+    def __sacar_acerto(self, puntos: int, num_xogo: int) -> int:
         return int((puntos/num_xogo) * 100)
     
-    def __imprimir_puntaxe(self, puntos, acerto, fin=False):
+    def __imprimir_puntaxe(self, puntos: int, acerto: int, fin=False) -> None:
         if fin:
             cprint('\n* Felicidades, conseguiches *', 'white', attrs=['bold'])
         else:
@@ -29,7 +29,7 @@ class CartaAltaEstratexia(XogarEstratexia):
             cprint(f'Puntaxe:\t{puntos} ptos\nAcerto: \t{acerto} %', 'white', attrs=['bold'])
 
 
-    def xogo(self, baralla = None, puntos = 0, num_xogo = 1) -> None:
+    def xogo(self, baralla: Baralla = None, puntos: int = 0, num_xogo: int = 1) -> None:
         # crear unha baralla se non mete baralla ou a metida está baleira
         if not baralla:
             cprint('* Creando unha nova baralla *', 'yellow', attrs=['bold'])
