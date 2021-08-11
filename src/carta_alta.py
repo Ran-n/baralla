@@ -3,7 +3,7 @@
 # ----------------------------------------------------
 #+ Autor:	Ran#
 #+ Creado:	10/08/2021 20:58:40
-#+ Editado:	11/08/2021 14:48:21
+#+ Editado:	12/08/2021 00:43:38
 # ----------------------------------------------------
 
 # ESTRATEXIA CONCRETA patrón estratexia #
@@ -24,9 +24,9 @@ class CartaAltaEstratexia(XogarEstratexia):
             cprint('* ----- Marcador ----- *', 'white', attrs=['bold'])
 
         if puntos == 1:
-            cprint(f'Puntaxe:\t{puntos} pto\nAcerto: \t{acerto}% *', 'white', attrs=['bold'])
+            cprint(f'Puntaxe:\t{puntos} pto\nAcerto: \t{acerto} %', 'white', attrs=['bold'])
         else:
-            cprint(f'Puntaxe:\t{puntos} ptos\nAcerto: \t{acerto}% *', 'white', attrs=['bold'])
+            cprint(f'Puntaxe:\t{puntos} ptos\nAcerto: \t{acerto} %', 'white', attrs=['bold'])
 
 
     def xogo(self, baralla = None, puntos = 0, num_xogo = 1) -> None:
