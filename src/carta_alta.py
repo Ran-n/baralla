@@ -3,18 +3,38 @@
 # ----------------------------------------------------
 #+ Autor:	Ran#
 #+ Creado:	10/08/2021 20:58:40
-#+ Editado:	11/08/2021 13:50:52
+#+ Editado:	11/08/2021 14:43:03
 # ----------------------------------------------------
 
 # ESTRATEXIA CONCRETA patrón estratexia #
+
+from termcolor import cprint
 
 from src.xogo import XogarEstratexia
 from src.baralla import Baralla
 
 class CartaAltaEstratexia(XogarEstratexia):
+    def __sacar_acerto(self, puntos, num_xogo):
+        return int((puntos/num_xogo) * 100)
+    
+    def __imprimir_puntaxe(self, puntos, acerto, fin=False):
+        if fin:
+            cprint('\n* Felicidades, conseguiches *', 'white', attrs=['bold'])
+            if puntos == 1:
+                cprint(f'Puntaxe: {puntos} pto\nAcerto: {acerto}%', 'white', attrs=['bold'])
+            else:
+                cprint(f'Puntaxe: {puntos} ptos\nAcerto: {acerto}%', 'white', attrs=['bold'])
+        else:
+            if puntos == 1:
+                cprint(f'* Puntaxe: {puntos} pto *\n* Acerto: {acerto}% *', 'white', attrs=['bold'])
+            else:
+                cprint(f'* Puntaxe: {puntos} ptos *\n* Acerto: {acerto}% *', 'white', attrs=['bold'])
+
+
     def xogo(self, baralla = None, puntos = 0, num_xogo = 1) -> None:
-        # crear unha baralla
+        # crear unha baralla se non mete baralla ou a metida está baleira
         if not baralla:
+            cprint('* Creando unha nova baralla *', 'yellow', attrs=['bold'])
             b = Baralla(preset='castela')
         else:
             b = baralla
@@ -23,32 +43,38 @@ class CartaAltaEstratexia(XogarEstratexia):
         print(f'Xogo #{num_xogo} ----------')
         # sacar carta aleatoria
         c1 = b.sacar_carta(True)
-        print(f'* A túa carta é *\n{c1}\n')
+        print('* A túa carta é *')
+        cprint(f'{c1}', 'cyan', attrs=['bold'])
         while True:
             resposta = input('A seguinte será maior(>), menor(<) ou igual(=)?: ')
-            print()
+
+            if resposta == '.':
+                self.__imprimir_puntaxe(puntos, self.__sacar_acerto(puntos, num_xogo))
+
             if resposta in ['<', '>', '=']:
-                print('-----------------------------------------')
+                print('\n-----------------------------------------')
                 c2 = b.sacar_carta(True)
                 if any([
                         c1 < c2 and resposta == '>',
                         c1 > c2 and resposta == '<',
                         c1 == c2 and resposta == '=',
                         ]):
-                    print('ACERTACHES!')
+                    cprint('ACERTACHES!', 'green', attrs=['bold'])
                     puntos += 1
                 else:
-                    print('ERRACHES :(')
+                    cprint('ERRACHES :(', 'red', attrs=['bold'])
                 print()
-                print(f'* A segunda carta era *\n{c2}')
-                print()
+                print('* A segunda carta era *')
+                cprint(f'{c2}', 'cyan', attrs=['bold'])
                 while True:
                     sair = input('Continuar?[S/n]: ').lower()
                     if sair in ['s', 'n', '']:
                         break
+                    if sair == '.':
+                        self.__imprimir_puntaxe(puntos, self.__sacar_acerto(puntos, num_xogo))
+                        
                 if sair == 'n':
-                    print()
-                    print(f'* Felicidades, conseguiches unha puntaxes de {puntos}! *')
+                    self.__imprimir_puntaxe(puntos, self.__sacar_acerto(puntos, num_xogo), True)
                     break
                 else:
                     self.xogo(b, puntos, num_xogo+1)
