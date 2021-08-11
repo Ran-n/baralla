@@ -3,14 +3,12 @@
 # ------------------------------------------------------
 #+ Autor:	Ran#
 #+ Creado:	09/08/2021 00:54:34
-#+ Editado:	09/08/2021 18:17:55
+#+ Editado:	11/08/2021 12:20:34
 # ------------------------------------------------------
 
 import unittest
 
-import sys
-sys.path.append('src')
-from carta import Carta
+from src.carta import Carta
 
 class TestCarta(unittest.TestCase):
 

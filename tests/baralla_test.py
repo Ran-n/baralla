@@ -3,17 +3,15 @@
 # ------------------------------------------------------
 #+ Autor:	Ran#
 #+ Creado:	09/08/2021 00:55:30
-#+ Editado:	10/08/2021 20:24:57
+#+ Editado:	11/08/2021 12:20:20
 # ------------------------------------------------------
 
 import unittest
 
-import sys
-sys.path.append('src')
-from carta import Carta
-from baralla import Baralla
+from src.carta import Carta
+from src.baralla import Baralla
 
-from excepcions import PosicionInexistente, CartaInexistente, BarallaBaleira
+from src.excepcions import PosicionInexistente, CartaInexistente, BarallaBaleira
 
 class TestBaralla(unittest.TestCase):
 
